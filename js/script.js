@@ -9,15 +9,21 @@
 
 // inizializzo l' array vuoto
 let array = [];
+let arrayBomb = [];
 // seleziono il container, le differenti modalità di difficoltà, e il btn di start-play
 const container = document.querySelector(".container");
 const diffMode = document.getElementById("difficulty-mode");
 const playBtn = document.getElementById("play-btn");
 
 // Aggiungo effetto al click del bottone start-play; con un IF-composto riesco a generare differenti tabelloni in base alla difficoltà
+// BUTTON PLAY
 playBtn.addEventListener("click", function() {
 
     cleanGame(container);
+
+    // genero l' array contenente le bombe
+    arrayBomb = generateBombs(16);
+    console.log(arrayBomb);
 
     playBtn.innerHTML = "RESTART";
 
@@ -72,21 +78,66 @@ function cardGenerator(numIndex) {
 
 
 /** CLICK ACTIONS
- * Description: genera una serie di eventi al click del mouse
+ * Description: genera una serie di eventi al click del mouse, scopre IF bomba
  * @param {} 
- * @returns {} :colora il quadrato selezionato di verde e mostra il num casella in console
+ * @returns {} :colora il quadrato selezionato di verde o rosso e mostra il num casella in console
  */
 function clickAction() {
-    this.classList.add("bg-green");
-    console.log(this.innerHTML);
+    const num = parseInt(this.textContent);
+    console.log(num);
+    if (arrayBomb.includes(num)) {
+        this.classList.add("bg-red");
+    } else {
+        this.classList.add("bg-green");
+    }
 }
 
 
-/**
+/** CLEAN GAME
  * Description: ripulisce la schermata di gioco
  * @param {html-element} board è il container
  * @returns {}
  */
 function cleanGame(board) {
     board.innerHTML = ("");
+}
+
+
+
+/** GENERATE BOMBS
+ * Description: funzione che genera X bombe
+ * @param {number} num numero selezionabile di bombe
+ * @returns {object} :ritorna array contenente le bombe
+ */
+function generateBombs(num) {
+
+    const array = [];
+
+    for (let i = 1; i <= num; i++) {
+        let rndNumber = rndNumbers(1, 100);
+
+        while (array.includes(rndNumber)) {
+            rndNumber = rndNumbers(1, 100);
+        }
+
+        array.push(rndNumber);
+    }
+
+    return array;
+}
+
+
+
+
+
+
+/** RANDOM NUMBERS
+ * Description: genera numeri randomici in un intorno MIN - MAX
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
+function rndNumbers(min, max) {
+    const rndNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    return rndNumber;
 }

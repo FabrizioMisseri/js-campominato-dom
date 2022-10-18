@@ -86,3 +86,7 @@ main {
 .card.bg-green{
     background-color: green;
 }
+
+.card.bg-red{
+    background-color: red;
+}
