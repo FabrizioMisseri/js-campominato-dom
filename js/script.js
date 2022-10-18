@@ -11,6 +11,7 @@
 let array = [];
 let arrayBomb = [];
 let flag = false;
+let cellCatched = 0;
 
 // seleziono il container, le differenti modalità di difficoltà, e il btn di start-play
 const container = document.querySelector(".container");
@@ -101,11 +102,13 @@ function clickAction() {
             }
     
             alert("you lose");
+            alert(`you catch ${cellCatched} cell`);
     
             flag = true;
             
         } else {
             this.classList.add("bg-green");
+            cellCatched++
         }
     } 
 
@@ -120,6 +123,8 @@ function clickAction() {
  */
 function cleanGame(board) {
     board.innerHTML = ("");
+    flag = false;
+    cellCatched = 0;
 }
 
 
