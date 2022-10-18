@@ -1,0 +1,88 @@
+*{
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 100%;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.header-right{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#play-btn{
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    border: 0;
+    background-color: aquamarine;
+    color: rgb(208, 38, 214);
+    font-weight: 1000;
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    height: 90vh;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 90%;
+    background-color: aquamarine;
+}
+
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: white;
+}
+
+.X10{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.X9{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.X7{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+.card.bg-green{
+    background-color: green;
+}
