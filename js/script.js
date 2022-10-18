@@ -140,13 +140,23 @@ function cleanGame(board) {
  */
 function generateBombs(num) {
 
+    let cells = 0;
+
+    if (diffMode.value === "easy") {
+        cells = 100;
+    } else if (diffMode.value === "normal") {
+        cells = 81;
+    } else if (diffMode.value === "hard") {
+        cells = 49;
+    }
+
     const array = [];
 
     for (let i = 1; i <= num; i++) {
-        let rndNumber = rndNumbers(1, 100);
+        let rndNumber = rndNumbers(1, cells);
 
         while (array.includes(rndNumber)) {
-            rndNumber = rndNumbers(1, 100);
+            rndNumber = rndNumbers(1, cells);
         }
 
         array.push(rndNumber);
