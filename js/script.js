@@ -12,6 +12,7 @@ let array = [];
 let arrayBomb = [];
 let flag = false;
 let cellCatched = 0;
+let winnerCounter = 0;
 
 // seleziono il container, le differenti modalità di difficoltà, e il btn di start-play
 const container = document.querySelector(".container");
@@ -32,10 +33,13 @@ playBtn.addEventListener("click", function() {
 
     if (diffMode.value === "easy") {
         array = scoreBoard(100);
+        winnerCounter = 84;
     } else if (diffMode.value === "normal") {
         array = scoreBoard(81);
+        winnerCounter = 65;
     } else if (diffMode.value === "hard") {
         array = scoreBoard(49);
+        winnerCounter = 33;
     }
 
 })
@@ -53,7 +57,6 @@ function scoreBoard(num) {
         const card = cardGenerator(i);
         container.append(card);
         card.addEventListener("click", clickAction);
-
     }
 }
 
@@ -109,6 +112,7 @@ function clickAction() {
         } else {
             this.classList.add("bg-green");
             cellCatched++
+            winnerCondition(cellCatched);
         }
     } 
 
@@ -154,8 +158,6 @@ function generateBombs(num) {
 
 
 
-
-
 /** RANDOM NUMBERS
  * Description: genera numeri randomici in un intorno MIN - MAX
  * @param {number} min
@@ -165,4 +167,13 @@ function generateBombs(num) {
 function rndNumbers(min, max) {
     const rndNumber = Math.floor(Math.random() * (max - min + 1) + min);
     return rndNumber;
+}
+
+
+
+function winnerCondition(counter) {
+    if(counter === winnerCounter) {
+        alert("you win");
+        flag = true;
+    }
 }
