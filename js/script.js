@@ -10,6 +10,8 @@
 // inizializzo l' array vuoto
 let array = [];
 let arrayBomb = [];
+let flag = false;
+
 // seleziono il container, le differenti modalità di difficoltà, e il btn di start-play
 const container = document.querySelector(".container");
 const diffMode = document.getElementById("difficulty-mode");
@@ -49,7 +51,8 @@ function scoreBoard(num) {
     for (let i = 1; i <= num; i++) {
         const card = cardGenerator(i);
         container.append(card);
-        card.addEventListener ("click", clickAction);
+        card.addEventListener("click", clickAction);
+
     }
 }
 
@@ -84,22 +87,29 @@ function cardGenerator(numIndex) {
  * @returns {} :colora il quadrato selezionato di verde o rosso e mostra il num casella in console
  */
 function clickAction() {
-    const num = parseInt(this.textContent);
-    console.log(num);
-    if (arrayBomb.includes(num)) {
-        this.classList.add("bg-red");
+    
+    if (flag === false) {
 
-        for (let i = 0; i < arrayBomb.length; i++){
-            let numBomb = arrayBomb[i];
-            let bomb = document.getElementById(`${numBomb}`)
-            bomb.classList.add("bg-red");
+        const num = parseInt(this.textContent);
+        console.log(num);
+        if (arrayBomb.includes(num)) {
+    
+            for (let i = 0; i < arrayBomb.length; i++){
+                let numBomb = arrayBomb[i];
+                let bomb = document.getElementById(`${numBomb}`)
+                bomb.classList.add("bg-red");
+            }
+    
+            alert("you lose");
+    
+            flag = true;
+            
+        } else {
+            this.classList.add("bg-green");
         }
+    } 
 
-        alert("you lose");
 
-    } else {
-        this.classList.add("bg-green");
-    }
 }
 
 
