@@ -63,6 +63,7 @@ function cardGenerator(numIndex) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.classList.add("white");
+    card.setAttribute("id", numIndex);
 
     if (diffMode.value === "easy") {
         card.classList.add("X10");
@@ -89,9 +90,12 @@ function clickAction() {
         this.classList.add("bg-red");
 
         for (let i = 0; i < arrayBomb.length; i++){
-            let bomb = arrayBomb[i];
-            (non sò cosa mettere qui)[bomb].classList.add("bg-red");
+            let numBomb = arrayBomb[i];
+            let bomb = document.getElementById(`${numBomb}`)
+            bomb.classList.add("bg-red");
         }
+
+        alert("you lose");
 
     } else {
         this.classList.add("bg-green");
