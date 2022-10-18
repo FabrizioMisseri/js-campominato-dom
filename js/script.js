@@ -87,6 +87,12 @@ function clickAction() {
     console.log(num);
     if (arrayBomb.includes(num)) {
         this.classList.add("bg-red");
+
+        for (let i = 0; i < arrayBomb.length; i++){
+            let bomb = arrayBomb[i];
+            (non sò cosa mettere qui)[bomb].classList.add("bg-red");
+        }
+
     } else {
         this.classList.add("bg-green");
     }
